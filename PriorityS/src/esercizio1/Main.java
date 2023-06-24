@@ -8,6 +8,5 @@ public class Main {
             Utente u = new Utente(i, P);
             u.start();
         }
-    
     }
 }
