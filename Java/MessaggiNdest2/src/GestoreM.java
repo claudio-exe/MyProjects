@@ -29,7 +29,6 @@ public class GestoreM implements GestoreMsg {
                 int[] n = { i };
                 Msg tmp = new Msg(m.from, n, m.txt);
                 messaggi.add(tmp);
-                System.out.println("---------" + messaggi.size());
             }
         } else if (messaggi.size() == max) {
             throw new GestorePieno();

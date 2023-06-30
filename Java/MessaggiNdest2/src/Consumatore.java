@@ -24,7 +24,7 @@ public class Consumatore extends Thread {
                             System.out.println("Consumatore: " + id + " riceve il messaggio: " + m.txt);
                         }
                     } else {
-                        System.out.println("Non sono presenti messaggi per: " + id);
+                        System.err.println("Non sono presenti messaggi per: " + id);
                         Thread.sleep(4000);
                     }
                 } catch (ConsumatoreSconosciuto e) {
