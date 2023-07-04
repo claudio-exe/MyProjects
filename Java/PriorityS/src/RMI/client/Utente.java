@@ -5,7 +5,10 @@ import RMI.common.PriorityStorage;
 import esercizio1.StorageEmpty;
 import esercizio1.StorageFull;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Random;
 
 public class Utente extends Thread{
@@ -14,9 +17,10 @@ public class Utente extends Thread{
     private PriorityStorage p;
     private Random r = new Random();
 
-    public Utente(int id, PriorityStorage p){
+    public Utente(int id) throws RemoteException, NotBoundException{
+        Registry reg = LocateRegistry.getRegistry();
+        p = (PriorityStorage)reg.lookup("STORAGE");
         this.id = id;
-        this.p = p;
     }
 
     public void run(){
