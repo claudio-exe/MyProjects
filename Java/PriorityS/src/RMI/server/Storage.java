@@ -45,7 +45,7 @@ public class Storage extends UnicastRemoteObject implements PriorityStorage {
                 throw new RuntimeException(e);
             }
         }
-        return (stringhe.get(p.priority).getFirst());
+        return (stringhe.get(p.priority).getLast());
     }
 
     @Override

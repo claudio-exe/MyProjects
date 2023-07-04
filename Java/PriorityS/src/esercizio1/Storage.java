@@ -35,7 +35,7 @@ public class Storage implements PriorityStorage{
                 throw new RuntimeException(e);
             }
         }
-        return (stringhe.get(p.priority).getFirst());
+        return (stringhe.get(p.priority).getLast());
     }
 
     @Override
