@@ -1,4 +1,4 @@
-package Matrix;
+package matr;
 
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -154,7 +154,7 @@ public class Matrice {
 	public void setMatrice() {
 		Double o = 0.0;
 		System.out.println("--Premere invio dopo l'inserimento di ogni valore--");
-		System.out.println("--Il valore che si sta inserendo è quello corrispondente alla X--");
+		System.out.println("--Il valore che si sta inserendo ï¿½ quello corrispondente alla X--");
 		for (int n = 0; n < righe; n++) {
 			System.out.println("Inserire la riga " + (n + 1) + " della matrice");
 			for (int m = 0; m < colonne; m++) {
@@ -401,7 +401,7 @@ public class Matrice {
 
 	public Matrice getMatIdentica() {
 		Matrice id = toMatrice(matIdentica(righe));
-		id.setNome("identità di ordine " + righe);
+		id.setNome("identitï¿½ di ordine " + righe);
 		return id;
 	}
 

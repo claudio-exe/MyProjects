@@ -1,4 +1,4 @@
-package Matrix;
+package matr;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -202,7 +202,7 @@ public class Display {
 				do {
 					nm = sc.nextLine();
 					if (controllaNome(nm, matrici)) {
-						System.out.println("Esiste già una matrice con questo nome.");
+						System.out.println("Esiste giï¿½ una matrice con questo nome.");
 					}
 				} while (controllaNome(nm, matrici));
 				System.out.println("Inserisci l'ordine della matrice " + nm);
@@ -227,7 +227,7 @@ public class Display {
 				agg = Matrice.creaMatrice();
 				do {
 					if (controllaNome(agg.getNome(), matrici)) {
-						System.out.println("Esiste già una matrice con questo nome,\nInserire un valore valido.");
+						System.out.println("Esiste giï¿½ una matrice con questo nome,\nInserire un valore valido.");
 						agg.setNome(sc.nextLine());
 					}
 				} while (controllaNome(agg.getNome(), matrici));
@@ -240,7 +240,7 @@ public class Display {
 				System.out.println("Scegli la matrice da rimuovere");
 				System.out.println("--Digita il numero all'interno delle parentesi quadre e premi invio--\n");
 				scelta1 = Matrice.sceltaMenu(1, matrici.size()) - 1;
-				System.out.println("La matrice seguente è stata rimossa");
+				System.out.println("La matrice seguente ï¿½ stata rimossa");
 				matrici.get(scelta1).stampaMatrice();
 				matrici.remove(scelta1);
 				break;
@@ -251,7 +251,7 @@ public class Display {
 				do {
 					nome = sc.nextLine();
 					if (controllaNome(nome, matrici)) {
-						System.out.println("Esiste già una matrice con questo nome.");
+						System.out.println("Esiste giï¿½ una matrice con questo nome.");
 					}
 				} while (controllaNome(nome, matrici));
 				System.out.println("Scegli l'ordine della matrice " + nome + "\n");
