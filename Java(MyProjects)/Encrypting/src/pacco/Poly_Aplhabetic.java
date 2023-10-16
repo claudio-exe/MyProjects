@@ -39,5 +39,6 @@ public class Poly_Aplhabetic {
         genKey();
         System.out.println(k);
         // aaabacadaeafbabbbcbdbebfcacbcccdcecfdadbdcdddedfeaebecedeeeffafbfcfdfeff
+        
     }
 }
