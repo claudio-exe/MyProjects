@@ -67,7 +67,7 @@ public class ROT_N {
         //"abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWYXZ-0123456789";
         //"abcdefghijklmnopqrstuvwxyz";
 
-        String s1 = "hwjcuzwcpsbs";
+        String s1 = "enivjneifvjnfv";
         System.out.println(s1);
         String s2 = encN(s1,40);
         System.out.println(s2);
