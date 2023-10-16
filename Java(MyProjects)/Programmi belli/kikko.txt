@@ -1,0 +1,17 @@
+public static int[] suoiDivisori(int a) {
+		int ndivisori = 0;
+		int pos = 0;
+		for (int i = 2; i < a; i++) {
+			if (a % i == 0) {
+				ndivisori++;
+			}
+		}
+		int[] divisori = new int[ndivisori];
+		for (int j = 2; j <= divisori.length; j++) {
+			if (a % j == 0) {
+				divisori[pos] = j;		
+				pos++;
+			}
+		}
+		return divisori;
+	}
