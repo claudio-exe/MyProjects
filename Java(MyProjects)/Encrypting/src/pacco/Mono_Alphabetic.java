@@ -1,10 +1,9 @@
 package pacco;
 
-import java.util.*;
+import java.util.Random;
 
-public class nonloso {
-
-    static String k = "";
+public class Mono_Alphabetic {
+        static String k = "";
     
     public static String genKey(){
         final String alfa = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

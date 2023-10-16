@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Mono_Alphabetic",
+            "request": "launch",
+            "mainClass": "pacco.Mono_Alphabetic",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "nonloso",
             "request": "launch",
             "mainClass": "pacco.nonloso",
