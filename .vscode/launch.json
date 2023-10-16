@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Display",
+            "request": "launch",
+            "mainClass": "matr.Display",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "Display",
+            "request": "launch",
+            "mainClass": "Display",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
