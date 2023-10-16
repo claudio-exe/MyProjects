@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Display",
             "request": "launch",
+            "mainClass": "MioProgramma/matr.Display",
+            "projectName": "A777A"
+        },
+        {
+            "type": "java",
+            "name": "Display",
+            "request": "launch",
             "mainClass": "matr.Display",
             "projectName": "vscodeJava_c8e651f6"
         },
