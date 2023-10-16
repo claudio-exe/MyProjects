@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "OneTime_Pad",
+            "request": "launch",
+            "mainClass": "pacco.OneTime_Pad",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "OneTime_Pad",
+            "request": "launch",
+            "mainClass": "OneTime_Pad",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "Cesare",
+            "request": "launch",
+            "mainClass": "Cesare",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "Display",
+            "request": "launch",
+            "mainClass": "matr.Display",
+            "projectName": "MatriciFinal"
+        },
+        {
+            "type": "java",
             "name": "Display",
             "request": "launch",
             "mainClass": "MioProgramma/matr.Display",
