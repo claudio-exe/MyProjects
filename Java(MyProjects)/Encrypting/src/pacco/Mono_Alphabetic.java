@@ -50,7 +50,7 @@ public class Mono_Alphabetic {
 
     public static void main(String[] args) {
 
-        String s = "sei un coglione di merda";
+        String s = "oll ai uont for crismas is iu";
         System.out.println("String: " + s);
         genKey();
         String encr = encrypt(s);
