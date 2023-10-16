@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "nonloso",
+            "request": "launch",
+            "mainClass": "pacco.nonloso",
+            "projectName": "Programmi belli"
+        },
+        {
+            "type": "java",
+            "name": "sostituisciLettere",
+            "request": "launch",
+            "mainClass": "belPacchetto.sostituisciLettere",
+            "projectName": "Programmi belli"
+        },
+        {
+            "type": "java",
+            "name": "ROT_N",
+            "request": "launch",
+            "mainClass": "pacco.ROT_N",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "ROT_13",
+            "request": "launch",
+            "mainClass": "pacco.ROT_13",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "OneTime_Pad",
             "request": "launch",
             "mainClass": "pacco.OneTime_Pad",

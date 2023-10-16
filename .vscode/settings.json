@@ -1,0 +1,14 @@
+{
+    "java.project.sourcePaths": [
+        "Java/PriorityS/src",
+        "Java(MyProjects)/MatriciFinal/src/Matrix",
+        "Java(MyProjects)/MatriciFinal/src",
+        "Java(MyProjects)/Encrypting/src",
+        "Java(MyProjects)/A777A/src/matr",
+        "Java(MyProjects)/A777A/src/Matrix",
+        "Java(ConcurrentAndDistributedProgramming)/PriorityS/src",
+        "Java(ConcurrentAndDistributedProgramming)/MessaggiNdest2/src",
+        "Java(ConcurrentAndDistributedProgramming)/ContenitoreNumeri/src",
+        "Java(MyProjects)/ammammata/src/main/java/com/example"
+    ]
+}
