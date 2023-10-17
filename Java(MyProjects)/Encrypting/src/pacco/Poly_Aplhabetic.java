@@ -16,7 +16,7 @@ public class Poly_Aplhabetic {
         String kt = "";
         Random rd = new Random();
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
             int r = rd.nextInt(gen.length());
             String tmp = Character.toString(gen.charAt(r));
             c += tmp;
@@ -33,10 +33,10 @@ public class Poly_Aplhabetic {
             int r = rd.nextInt(kt.length());
             if (r % 2 == 0) {
                 cc[i] = Character.toString(kt.charAt(r)) + Character.toString(kt.charAt((r + 1) % kt.length()));
-                kt = kt.substring(0, r) + kt.substring(r + 1, kt.length());
+                kt = kt.substring(0, r) + kt.substring((r + 2), kt.length());
             } else {
                 cc[i] = Character.toString(kt.charAt(r - 1)) + Character.toString(kt.charAt(r));
-                kt = kt.substring(0, r - 1) + kt.substring(r, kt.length());
+                kt = kt.substring(0, r - 1) + kt.substring(r + 1, kt.length());
             }
         }
 
@@ -85,10 +85,9 @@ public class Poly_Aplhabetic {
 
     public static void main(String[] args) {
         genKey();
-        String a = "ciao coglione di merda";
+        String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("chiave: " + k + "\n");
         System.out.println(encrypt(a));
         System.out.println(decrypt(encrypt(a)));
-
     }
 }
