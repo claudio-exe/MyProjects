@@ -2,12 +2,12 @@ package pacco;
 
 import java.util.Random;
 
-public class Poly_Aplhabetic {
+public class Poly_Alphabetic_N {
     static String k = "";
     static String[] ka;
     static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
 
-    public static String genKey() {
+    public static String genKey(int symbol_number) {
 
         String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         String c = "";
@@ -77,7 +77,7 @@ public class Poly_Aplhabetic {
                     dec += alfa.charAt(j);
                     break;
                 }
-                j = (j + 1);
+                j = (j + 1) % ka.length;
             } while (true);
         }
         return dec;
@@ -99,7 +99,7 @@ public class Poly_Aplhabetic {
     }
 
     public static void main(String[] args) {
-        genKey();
+        genKey(3);
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
         "\n\"----------------------------------------------------------------------\"");

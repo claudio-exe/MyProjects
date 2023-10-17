@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "pacco.test",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "Cesare",
             "request": "launch",
             "mainClass": "pacco.Cesare",
