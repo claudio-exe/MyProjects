@@ -16,7 +16,7 @@ public class Poly_Aplhabetic {
         String kt = "";
         Random rd = new Random();
 
-        for (int i = 0; i < 63; i++) {
+        for (int i = 0; i < 8; i++) {
             int r = rd.nextInt(gen.length());
             String tmp = Character.toString(gen.charAt(r));
             c += tmp;

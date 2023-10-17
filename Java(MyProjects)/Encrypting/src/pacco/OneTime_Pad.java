@@ -40,7 +40,7 @@ public class OneTime_Pad {
 
     public static void main(String[] args) {
 
-        String a = "Ashley HA fatto LA cacca Per TERRA";
+        String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         String k = genKey(a);
         System.out.println("______\n"+k+"\n______");
 
