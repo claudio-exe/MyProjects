@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "pacco.App",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "Poly_Aplhabetic",
             "request": "launch",
             "mainClass": "pacco.Poly_Aplhabetic",
