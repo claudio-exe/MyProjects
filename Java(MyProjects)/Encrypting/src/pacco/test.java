@@ -33,7 +33,7 @@ public class test {
         }
     }
 
-    private static void generateCouples(String str, int coupleLength) {
+    private static void generateCouples1(String str, int coupleLength) {
         int n = str.length();
 
         for (int i = 0; i <= n - coupleLength; i++) {
