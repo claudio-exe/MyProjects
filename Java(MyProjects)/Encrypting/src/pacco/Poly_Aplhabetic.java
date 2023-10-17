@@ -16,7 +16,7 @@ public class Poly_Aplhabetic {
         String kt = "";
         Random rd = new Random();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 63; i++) {
             int r = rd.nextInt(gen.length());
             String tmp = Character.toString(gen.charAt(r));
             c += tmp;
@@ -32,7 +32,7 @@ public class Poly_Aplhabetic {
         for (int i = 0; i < cc.length; i++) {
             int r = rd.nextInt(kt.length());
             if (r % 2 == 0) {
-                cc[i] = Character.toString(kt.charAt(r)) + Character.toString(kt.charAt((r + 1) % kt.length()));
+                cc[i] = Character.toString(kt.charAt(r)) + Character.toString(kt.charAt((r + 1)));
                 kt = kt.substring(0, r) + kt.substring((r + 2), kt.length());
             } else {
                 cc[i] = Character.toString(kt.charAt(r - 1)) + Character.toString(kt.charAt(r));
@@ -83,11 +83,27 @@ public class Poly_Aplhabetic {
         return dec;
     }
 
+    public static int symbolCount(String s){
+        String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
+        int j = 0;
+        int count = 0;
+        do{
+            String tmp = s.replace(Character.toString(alfabeto.charAt(j)),"");
+            if(!tmp.equals(s)){
+                count++;
+            }
+            s = tmp;
+            j++;
+        }while(s.length() > 0);
+        return count;
+    }
+
     public static void main(String[] args) {
         genKey();
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
-        System.out.println("chiave: " + k + "\n");
-        System.out.println(encrypt(a));
-        System.out.println(decrypt(encrypt(a)));
+        System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
+        "\n\"----------------------------------------------------------------------\"");
+        System.out.println("Stringa criptata: " + encrypt(a));
+        System.out.println("Stringa decriptata: " + decrypt(encrypt(a)));
     }
 }
