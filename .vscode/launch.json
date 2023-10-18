@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Poly_Alphabetic_N",
+            "request": "launch",
+            "mainClass": "pacco.Poly_Alphabetic_N",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "test.test",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
+            "name": "test2",
+            "request": "launch",
+            "mainClass": "test.test2",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "test",
             "request": "launch",
             "mainClass": "pacco.test",
