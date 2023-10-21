@@ -142,14 +142,25 @@ public class Poly_Alphabetic_N {
         return count;
     }
 
+    public static List<String> getKeyList(String s, int shift){
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < s.length(); i = i + shift){
+            String tmp = s.substring(i, i + shift);
+            list.add(tmp);
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
-        //System.out.println((long)Math.pow(5,15));
-        //System.out.println(Long.MAX_VALUE);
-        genKey(63,15);
+        genKey(63,25);
+        List<String> u = getKeyList(k, ka.get(0).length());
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
         "\n\"----------------------------------------------------------------------\"");
         System.out.println("Stringa criptata: " + encrypt(a));
         System.out.println("Stringa decriptata: " + decrypt(encrypt(a)));
+        for(int i = 0; i < u.size(); i++){
+            System.out.println(alfa.charAt(i) + ": " + u.get(i));
+        }
     }
 }

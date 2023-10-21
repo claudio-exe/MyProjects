@@ -1,5 +1,6 @@
 package pacco;
 
+import java.util.ArrayList;
 
 public class App {
     
@@ -17,6 +18,16 @@ public class App {
             char tmp = (char)j;
             System.out.println("char: " + j + " = " + tmp);
         }
+    }
+
+    public static List<String> fromStringToList(String s, int shift){
+        List<String> key = new ArrayList<>();
+        for(int i = 0; i < s.length(); i++){
+            String tmp = s.substring(i, shift);
+            key.append(tmp);
+            s = s.substring(shift + 1,s.length());
+        }
+        return key;
     }
 
 }
