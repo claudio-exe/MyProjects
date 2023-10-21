@@ -12,7 +12,9 @@ public class Poly_Alphabetic_N {
     static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
 
     public static String genKey(int symbol, int symbol_number) {
-
+        if(symbol > 63){
+            symbol = 63;
+        }
         String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         String key = "";
         String c = "";
@@ -143,7 +145,7 @@ public class Poly_Alphabetic_N {
     public static void main(String[] args) {
         //System.out.println((long)Math.pow(5,15));
         //System.out.println(Long.MAX_VALUE);
-        genKey(63,500);
+        genKey(63,15);
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
         "\n\"----------------------------------------------------------------------\"");
