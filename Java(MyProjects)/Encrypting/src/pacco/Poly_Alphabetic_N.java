@@ -1,4 +1,3 @@
-
 package pacco;
 
 import java.util.ArrayList;
@@ -13,13 +12,13 @@ public class Poly_Alphabetic_N {
     static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789()[]{}@#§€;:,.-_?!|^£$%&/='\\<>\"°*+\n";
 
     public static String genKey(int symbol, int symbol_number) {
-        String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"; 
-        if(symbol > gen.length()){
+        String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
+        if (symbol > gen.length()) {
             symbol = gen.length();
-        } else if ((long)Math.pow(symbol,symbol_number) < alfa.length()){
-            do{
+        } else if ((long) Math.pow(symbol, symbol_number) < alfa.length()) {
+            do {
                 symbol_number++;
-            }while((long)Math.pow(symbol,symbol_number) < alfa.length());
+            } while ((long) Math.pow(symbol, symbol_number) < alfa.length());
         }
         String key = "";
         String c = "";
@@ -76,12 +75,12 @@ public class Poly_Alphabetic_N {
         return dec;
     }
 
-    public static List<String> generator(String str, int coupleLength){
-        long count = (long)Math.pow(str.length(),coupleLength);
+    public static List<String> generator(String str, int coupleLength) {
+        long count = (long) Math.pow(str.length(), coupleLength);
         List<String> coppie = new ArrayList<>();
-        if(count < 1000000){
+        if (count < 1000000) {
             coppie = generateCouples(str, coupleLength);
-        }else{
+        } else {
             coppie = casualCouples(str, coupleLength);
         }
         return coppie;
@@ -132,40 +131,51 @@ public class Poly_Alphabetic_N {
         return coppie;
     }
 
-    public static int symbolCount(String s){
+    public static int symbolCount(String s) {
         String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         int j = 0;
         int count = 0;
-        do{
-            String tmp = s.replace(Character.toString(alfabeto.charAt(j)),"");
-            if(!tmp.equals(s)){
+        do {
+            String tmp = s.replace(Character.toString(alfabeto.charAt(j)), "");
+            if (!tmp.equals(s)) {
                 count++;
             }
             s = tmp;
             j++;
-        }while(s.length() > 0);
+        } while (s.length() > 0);
         return count;
     }
 
-    public static List<String> getKeyList(String s, int shift){
+    public static List<String> getKeyList(String s, int shift) {
         List<String> list = new ArrayList<>();
-        for(int i = 0; i < s.length(); i = i + shift){
+        for (int i = 0; i < s.length(); i = i + shift) {
             String tmp = s.substring(i, i + shift);
             list.add(tmp);
         }
         return list;
     }
 
-    public static void main(String[] args) {
-        genKey(63,7);
+    public static void printAlphabet() {
         List<String> u = getKeyList(k, ka.get(0).length());
-        String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
-        System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
-        "\n\"----------------------------------------------------------------------------------\"");
-        System.out.println("Stringa criptata: " + encrypt(a));
-        System.out.println("Stringa decriptata: " + decrypt(encrypt(a)));
-        for(int i = 0; i < u.size(); i++){
-            System.out.println(alfa.charAt(i) + ": " + u.get(i));
+        for (int i = 0; i < u.size(); i++) {
+            if (Character.toString(alfa.charAt(i)).equals("\n")) {
+                System.out.println("\\n: " + u.get(i));
+            } else {
+                System.out.println(alfa.charAt(i) + ": " + u.get(i));
+            }
         }
+    }
+
+    public static void main(String[] args) {
+        genKey(63, 7);
+        String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
+        System.out.println("Chiave: " + k + "\nComposta da: " + symbolCount(k) + " simboli" +
+                "\n\"----------------------------------------------------------------------------------\"");
+        printAlphabet();
+        System.out.println("\"----------------------------------------------------------------------------------\"");
+        String ea = encrypt(a);
+        System.out.println("Stringa criptata: " + ea);
+        System.out.println("Stringa decriptata: " + decrypt(ea));
+
     }
 }
