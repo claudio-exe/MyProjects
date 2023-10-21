@@ -153,11 +153,11 @@ public class Poly_Alphabetic_N {
     }
 
     public static void main(String[] args) {
-        genKey(63,25);
+        genKey(63,9);
         List<String> u = getKeyList(k, ka.get(0).length());
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
-        "\n\"----------------------------------------------------------------------\"");
+        "\n\"----------------------------------------------------------------------------------\"");
         System.out.println("Stringa criptata: " + encrypt(a));
         System.out.println("Stringa decriptata: " + decrypt(encrypt(a)));
         for(int i = 0; i < u.size(); i++){
