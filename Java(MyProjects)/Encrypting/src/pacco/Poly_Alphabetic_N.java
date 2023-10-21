@@ -1,8 +1,10 @@
 package pacco;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class Poly_Alphabetic_N {
     static String k = "";
@@ -24,7 +26,7 @@ public class Poly_Alphabetic_N {
             gen = gen.replace(tmp, "");
         }
 
-        couples = generateCouples(c, symbol_number);
+        couples = generator(c, symbol_number);
 
         for (int i = 0; i < 63; i++) {
             int r = rd.nextInt(couples.size());
@@ -67,7 +69,19 @@ public class Poly_Alphabetic_N {
         return dec;
     }
 
-    private static List<String> generateCouples(String str, int coupleLength) {
+    public static List<String> generator(String str, int coupleLength){
+        long count = (long)Math.pow(str.length(),coupleLength);
+        List<String> coppie = new ArrayList<>();
+        if(count < 1000000){
+            coppie = generateCouples(str, coupleLength);
+        }else{
+            coppie = casualCouples(str, coupleLength);
+        }
+        return coppie;
+
+    }
+
+    public static List<String> generateCouples(String str, int coupleLength) {
         List<String> coppie = new ArrayList<>();
         long n = (int) Math.pow(str.length(), coupleLength);
         int[] indici = new int[coupleLength];
@@ -90,6 +104,27 @@ public class Poly_Alphabetic_N {
         return coppie;
     }
 
+    public static List<String> casualCouples(String str, int coupleLength) {
+        List<String> coppie = new ArrayList<>();
+        Set<String> couples = new HashSet<>();
+        int[] indici = new int[coupleLength];
+        Random rd = new Random();
+        do {
+            StringBuilder tmp = new StringBuilder();
+            for (int z = coupleLength - 1; z >= 0; z--) {
+                indici[z] = rd.nextInt(str.length());
+            }
+            for (int j = 0; j < coupleLength; j++) {
+                tmp.append(str.charAt(indici[j]));
+            }
+            if (!couples.contains(tmp.toString())) {
+                couples.add(tmp.toString());
+            }
+        } while (couples.size() < 1000);
+        coppie.addAll(couples);
+        return coppie;
+    }
+
     public static int symbolCount(String s){
         String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         int j = 0;
@@ -106,7 +141,9 @@ public class Poly_Alphabetic_N {
     }
 
     public static void main(String[] args) {
-        genKey(2,18);
+        //System.out.println((long)Math.pow(5,15));
+        //System.out.println(Long.MAX_VALUE);
+        genKey(63,500);
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
         "\n\"----------------------------------------------------------------------\"");
