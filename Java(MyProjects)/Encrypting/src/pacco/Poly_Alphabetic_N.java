@@ -157,7 +157,7 @@ public class Poly_Alphabetic_N {
     }
 
     public static void main(String[] args) {
-        genKey(63,2);
+        genKey(63,7);
         List<String> u = getKeyList(k, ka.get(0).length());
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
