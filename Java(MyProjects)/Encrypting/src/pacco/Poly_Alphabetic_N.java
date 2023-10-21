@@ -10,12 +10,16 @@ import java.util.Set;
 public class Poly_Alphabetic_N {
     static String k = "";
     static List<String> ka = new ArrayList<>();
-    static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789[]{}@#§€;:,.-_?!|^£$%&/='";
+    static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789()[]{}@#§€;:,.-_?!|^£$%&/='\\<>\"°*+\n";
 
     public static String genKey(int symbol, int symbol_number) {
         String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"; 
         if(symbol > gen.length()){
             symbol = gen.length();
+        } else if ((long)Math.pow(symbol,symbol_number) < alfa.length()){
+            do{
+                symbol_number++;
+            }while((long)Math.pow(symbol,symbol_number) < alfa.length());
         }
         String key = "";
         String c = "";
@@ -153,7 +157,7 @@ public class Poly_Alphabetic_N {
     }
 
     public static void main(String[] args) {
-        genKey(63,9);
+        genKey(63,2);
         List<String> u = getKeyList(k, ka.get(0).length());
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
         System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
