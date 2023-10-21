@@ -10,13 +10,13 @@ import java.util.Set;
 public class Poly_Alphabetic_N {
     static String k = "";
     static List<String> ka = new ArrayList<>();
-    static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
+    static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789[]{}@#§€;:,.-_?!|^£$%&/='";
 
     public static String genKey(int symbol, int symbol_number) {
-        if(symbol > 63){
-            symbol = 63;
+        String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"; 
+        if(symbol > gen.length()){
+            symbol = gen.length();
         }
-        String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         String key = "";
         String c = "";
         List<String> couples = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Poly_Alphabetic_N {
 
         couples = generator(c, symbol_number);
 
-        for (int i = 0; i < 63; i++) {
+        for (int i = 0; i < alfa.length(); i++) {
             int r = rd.nextInt(couples.size());
             ka.add(couples.get(r));
             couples.remove(r);
