@@ -9,7 +9,7 @@ import java.util.Set;
 public class Poly_Alphabetic_N {
     static String k = "";
     static List<String> ka = new ArrayList<>();
-    static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789()[]{}@#§€;:,.-_?!|^£$%&/='\\<>\"°*+\n";
+    static final String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789()[]{}@#§€;:,.-_?!|^£$%&/='\\<>\"°*+\n";
 
     public static String genKey(int symbol, int symbol_number) {
         String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
