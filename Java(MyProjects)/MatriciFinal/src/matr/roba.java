@@ -18,7 +18,7 @@ public class roba {
 		String tmp = At.replace("\n","");
 		System.out.println(tmp);
 		At = tmp;
-		File f2 = new File("fileMatrici.txt");
+		File f2 = new File("MatriciFinal/fileMatrici.txt");
 		String path = f2.getAbsolutePath();
 		FileWriter fw = new FileWriter((path), true);
 		FileReader fr = new FileReader(path);

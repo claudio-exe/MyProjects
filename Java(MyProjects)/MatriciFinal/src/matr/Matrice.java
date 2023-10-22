@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Matrice {
+public class Matrice{
 
 	private String nome = "{empty}";
 	private int righe;

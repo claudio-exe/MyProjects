@@ -26,12 +26,12 @@ public class test2 {
         String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String gen = "";
         System.out.println("Simboli disponibili per la generazione: \"" + alfa + "\"\nNumero di simboli da usare");
-        do{
+        do {
             symbol = sc.nextInt();
-            if(symbol > alfa.length()){
+            if (symbol > alfa.length()) {
                 System.out.println("Simboli disponibili " + alfa.length() + ", inserire un valore valido");
             }
-        }while(symbol > alfa.length());
+        } while (symbol > alfa.length());
         System.out.println("Lunghezza delle combinazioni");
         coupleLength = sc.nextInt();
         for (int i = 0; i < symbol; i++) {
@@ -55,7 +55,7 @@ public class test2 {
         }
         fw.close();
         sc.close();
-        System.out.println(couples.size()+" combinazioni generate.\nRisultati inseriti in " + f.getAbsolutePath());
+        System.out.println(couples.size() + " combinazioni generate.\nRisultati inseriti in " + f.getAbsolutePath());
     }
 
     public static List<String> casualCouples(String str, int coupleLength) {
