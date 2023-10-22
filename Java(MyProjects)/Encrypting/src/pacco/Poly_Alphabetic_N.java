@@ -169,7 +169,7 @@ public class Poly_Alphabetic_N {
     public static void main(String[] args) {
         genKey(63, 7);
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
-        System.out.println("Chiave: " + k + "\nComposta da: " + symbolCount(k) + " simboli" +
+        System.out.println("\nChiave: " + k + "\nComposta da: " + symbolCount(k) + " simboli" +
                 "\n\"----------------------------------------------------------------------------------\"");
         printAlphabet();
         System.out.println("\"----------------------------------------------------------------------------------\"");

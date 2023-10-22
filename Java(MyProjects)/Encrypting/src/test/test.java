@@ -8,7 +8,7 @@ public class test {
 
     public static void main(String[] args) {
         // generateCouples1("abcdefghilmno", 5);
-        casualCouples("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789", 100);
+        coppie = casualCouples("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789", 100);
         System.out.println(coppie);
         System.out.println(coppie.getLast());
         System.out.println(coppie.size());
@@ -34,8 +34,9 @@ public class test {
         }
     }
 
-    public static void casualCouples(String str, int coupleLength) {
+    public static List<String> casualCouples(String str, int coupleLength) {
         Set<String> couples = new HashSet<>();
+        List<String> cop = new ArrayList<>();
         int[] indici = new int[coupleLength];
         Random rd = new Random();
         do {
@@ -50,7 +51,8 @@ public class test {
                 couples.add(tmp.toString());
             }
         } while (couples.size() < 1000);
-        coppie.addAll(couples);
+        cop.addAll(couples);
+        return cop;
     }
 
     public static int symbolCount(String s) {

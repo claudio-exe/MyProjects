@@ -1,46 +1,87 @@
 package test;
 
+import java.io.BufferedWriter;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 
 public class test2 {
 
     static List<String> couples = new ArrayList<>();
-    public static void main(String[] args) {
 
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+        Random rd = new Random();
         StringBuilder sb = new StringBuilder();
         StringBuilder bs = new StringBuilder();
-        generateCouples("abcdefghijklmnopqrstuvwxyz", 5,sb,bs);
-        System.out.println(couples);
-        System.out.println(couples.size());
-
+        int coupleLength, symbol = 0;
+        String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String gen = "";
+        System.out.println("Simboli disponibili per la generazione: " + alfa + "\nNumero di simboli da usare");
+        do{
+            symbol = sc.nextInt();
+            if(symbol > alfa.length()){
+                System.out.println("Simboli disponibili " + alfa.length() + ", inserire un valore valido");
+            }
+        }while(symbol > alfa.length());
+        System.out.println("Lunghezza delle combinazioni");
+        coupleLength = sc.nextInt();
+        for (int i = 0; i < symbol; i++) {
+            int r = rd.nextInt(alfa.length());
+            gen += alfa.charAt(r);
+            alfa = alfa.replace(Character.toString(alfa.charAt(r)), "");
+        }
+        File f = new File("Encrypting/combination.txt");
+        if (f.exists()) {
+            f.delete();
+        }
+        if (((long) Math.pow(gen.length(), coupleLength)) > 1000000) {
+            couples = casualCouples(gen, coupleLength);
+        } else {
+            generateCouples(gen, coupleLength, sb, bs);
+        }
+        String path = f.getAbsolutePath();
+        FileWriter fw = new FileWriter((path), true);
+        for (String tmp : couples) {
+            fw.append(tmp + "\n");
+        }
+        fw.close();
+        sc.close();
+        System.out.println((long)Math.pow(symbol,coupleLength)+" combinazioni generate.\nRisultati inseriti in " + f.getAbsolutePath());
     }
 
-    private static List<String> generateCouples(String str, int coupleLength) {
-        List<String> coppie = new ArrayList<>();
-        int n = (int) Math.pow(str.length(), coupleLength);
+    public static List<String> casualCouples(String str, int coupleLength) {
+        Set<String> couples = new HashSet<>();
+        List<String> cop = new ArrayList<>();
         int[] indici = new int[coupleLength];
-
-        for (int i = 0; i < n; i++) {
+        long range = (long)Math.pow(str.length(),coupleLength);
+        Random rd = new Random();
+        do {
             StringBuilder tmp = new StringBuilder();
+            for (int z = coupleLength - 1; z >= 0; z--) {
+                indici[z] = rd.nextInt(str.length());
+            }
             for (int j = 0; j < coupleLength; j++) {
                 tmp.append(str.charAt(indici[j]));
             }
-            coppie.add(tmp.toString());
-
-            for (int j = coupleLength - 1; j >= 0; j--) {
-                indici[j]++;
-                if (indici[j] < str.length()) {
-                    break;
-                }
-                indici[j] = 0;
+            if (!couples.contains(tmp.toString())) {
+                couples.add(tmp.toString());
             }
-        }
-
-        return coppie;
+        } while (couples.size() < range);
+        cop.addAll(couples);
+        return cop;
     }
 
-    private static void generateCouples(String str, int coupleLength, StringBuilder currentCouple, StringBuilder result) {
+    private static void generateCouples(String str, int coupleLength, StringBuilder currentCouple,
+            StringBuilder result) {
         if (coupleLength == 0) {
             result.append(currentCouple);
             couples.add(currentCouple.toString());
