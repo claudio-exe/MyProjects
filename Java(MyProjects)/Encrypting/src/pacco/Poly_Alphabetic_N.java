@@ -9,9 +9,9 @@ import java.util.Set;
 public class Poly_Alphabetic_N {
     static String k = "";
     static List<String> ka = new ArrayList<>();
-    static final String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZòàèéùì 0123456789()[]{}@#§€;:,.-_?!|^£$%&/='\\<>\"°*+\n";
+    static final String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789òàèéùì()[]{}@#§€;:,.-_?!|^£$%&/='\\<>\"°*+\n";
 
-    public static String genKey(int symbol, int symbol_number) {
+    private static String genKey(int symbol, int symbol_number) {
         String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         if (symbol > gen.length()) {
             symbol = gen.length();
@@ -47,7 +47,7 @@ public class Poly_Alphabetic_N {
         return key;
     }
 
-    public static String encrypt(String s) {
+    private static String encrypt(String s) {
         String enc = "";
         for (int i = 0; i < s.length(); i++) {
             enc += ka.get(alfa.indexOf(s.charAt(i)));
@@ -55,7 +55,7 @@ public class Poly_Alphabetic_N {
         return enc;
     }
 
-    public static String decrypt(String s) {
+    private static String decrypt(String s) {
         String dec = "";
         int symb = ka.get(0).length();
         for (int i = 0; i < s.length(); i = i + symb) {
@@ -75,7 +75,7 @@ public class Poly_Alphabetic_N {
         return dec;
     }
 
-    public static List<String> generator(String str, int coupleLength) {
+    private static List<String> generator(String str, int coupleLength) {
         long count = (long) Math.pow(str.length(), coupleLength);
         List<String> coppie = new ArrayList<>();
         if (count < 1000000) {
@@ -132,21 +132,26 @@ public class Poly_Alphabetic_N {
     }
 
     public static int symbolCount(String s) {
-        String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         int j = 0;
-        int count = 0;
         do {
-            String tmp = s.replace(Character.toString(alfabeto.charAt(j)), "");
-            if (!tmp.equals(s)) {
-                count++;
-            }
+            String tmp = s.replace(Character.toString(s.charAt(0)), "");
             s = tmp;
             j++;
         } while (s.length() > 0);
-        return count;
+        return j;
     }
 
-    public static List<String> getKeyList(String s, int shift) {
+    public static String distinctSymbol(String s) {
+        StringBuilder symbol = new StringBuilder();
+        do {
+            symbol.append(s.charAt(0));
+            String tmp = s.replace(Character.toString(s.charAt(0)), "");
+            s = tmp;
+        } while (s.length() > 0);
+        return symbol.toString();
+    }
+
+    private static List<String> getKeyList(String s, int shift) {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < s.length(); i = i + shift) {
             String tmp = s.substring(i, i + shift);
@@ -155,7 +160,7 @@ public class Poly_Alphabetic_N {
         return list;
     }
 
-    public static void printAlphabet() {
+    private static void printAlphabet() {
         List<String> u = getKeyList(k, ka.get(0).length());
         for (int i = 0; i < u.size(); i++) {
             if (Character.toString(alfa.charAt(i)).equals("\n")) {
@@ -169,7 +174,8 @@ public class Poly_Alphabetic_N {
     public static void main(String[] args) {
         genKey(63, 7);
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
-        System.out.println("\nChiave: " + k + "\nComposta da: " + symbolCount(k) + " simboli" +
+        System.out.println("\nChiave: " + k + "\nComposta da: " + distinctSymbol(k).length()
+                + " simboli (simboli usati: " + distinctSymbol(k) + ") " +
                 "\n\"----------------------------------------------------------------------------------\"");
         printAlphabet();
         System.out.println("\"----------------------------------------------------------------------------------\"");

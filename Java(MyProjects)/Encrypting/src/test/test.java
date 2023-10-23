@@ -7,31 +7,16 @@ public class test {
     static LinkedList<String> coppie = new LinkedList<>();
 
     public static void main(String[] args) {
-        // generateCouples1("abcdefghilmno", 5);
-        coppie = casualCouples("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789", 100);
+        coppie.addAll(casualCouples("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789", 100));
         System.out.println(coppie);
         System.out.println(coppie.getLast());
         System.out.println(coppie.size());
-    }
-
-    private static void generateCouples1(String str, int coupleLength) {
-        long n = (long) Math.pow(str.length(), coupleLength);
-        int[] indici = new int[coupleLength];
-        int indexLen = coupleLength - 1;
-        for (int i = 0; i < n; i++) {
-            String tmp = "";
-            for (int j = 0; j < coupleLength; j++) {
-                tmp += str.charAt(indici[j]);
-            }
-            for (int z = indexLen; z >= 0; z--) {
-                indici[z]++;
-                if (indici[z] < str.length()) {
-                    break;
-                }
-                indici[z] = 0;
-            }
-            coppie.add(tmp);
+        double avg = 0;
+        for(String s : coppie){
+            avg += distinctSymbol(s).length();
         }
+        avg /= coppie.size();
+        System.out.println("Media dei simboli usati: "+avg);
     }
 
     public static List<String> casualCouples(String str, int coupleLength) {
@@ -56,18 +41,23 @@ public class test {
     }
 
     public static int symbolCount(String s) {
-        String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
         int j = 0;
-        int count = 0;
         do {
-            String tmp = s.replace(Character.toString(alfabeto.charAt(j)), "");
-            if (!tmp.equals(s)) {
-                count++;
-            }
+            String tmp = s.replace(Character.toString(s.charAt(0)), "");
             s = tmp;
             j++;
         } while (s.length() > 0);
-        return count;
+        return j;
+    }
+
+    public static String distinctSymbol(String s) {
+        StringBuilder symbol = new StringBuilder();
+        do {
+            symbol.append(s.charAt(0));
+            String tmp = s.replace(Character.toString(s.charAt(0)), "");
+            s = tmp;
+        } while (s.length() > 0);
+        return symbol.toString();
     }
 
 }

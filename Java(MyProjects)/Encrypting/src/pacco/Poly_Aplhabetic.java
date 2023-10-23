@@ -83,26 +83,22 @@ public class Poly_Aplhabetic {
         return dec;
     }
 
-    public static int symbolCount(String s){
-        String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
-        int j = 0;
-        int count = 0;
-        do{
-            String tmp = s.replace(Character.toString(alfabeto.charAt(j)),"");
-            if(!tmp.equals(s)){
-                count++;
-            }
+    public static String distinctSymbol(String s) {
+        StringBuilder symbol = new StringBuilder();
+        do {
+            symbol.append(s.charAt(0));
+            String tmp = s.replace(Character.toString(s.charAt(0)), "");
             s = tmp;
-            j++;
-        }while(s.length() > 0);
-        return count;
+        } while (s.length() > 0);
+        return symbol.toString();
     }
 
     public static void main(String[] args) {
         genKey();
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
-        System.out.println("Chiave: " + k + "\nComposta da: "+ symbolCount(k) + " simboli" +
-        "\n\"----------------------------------------------------------------------\"");
+        System.out.println("\nChiave: " + k + "\nComposta da: " + distinctSymbol(k).length()
+                + " simboli (simboli usati: " + distinctSymbol(k) + ") " +
+                "\n\"----------------------------------------------------------------------------------\"");
         System.out.println("Stringa criptata: " + encrypt(a));
         System.out.println("Stringa decriptata: " + decrypt(encrypt(a)));
     }
