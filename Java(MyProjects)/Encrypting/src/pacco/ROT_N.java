@@ -1,76 +1,83 @@
 package pacco;
 
-
 public class ROT_N {
 
     public static String encN(String s, int shift) {
-        StringBuilder tmp= new StringBuilder();
-        for(int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if(c == ' ') tmp.append(" ");
-            else if(c == '\n') tmp.append("\n");
-            else if(!Character.isLetter(c)) tmp.append(c);
+        StringBuilder enc_s = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char current = s.charAt(i);
+            if (current == ' ')
+                enc_s.append(" ");
+            else if (current == '\n')
+                enc_s.append("\n");
+            else if (!Character.isLetter(current))
+                enc_s.append(current);
             else {
-                char ctmp = ' ';
-                if(Character.isUpperCase(c)){
-                    ctmp = c;
-                    c = Character.toLowerCase(c);
+                char c_upperCase = ' ';
+                if (Character.isUpperCase(current)) {
+                    c_upperCase = current;
+                    current = Character.toLowerCase(current);
                 }
-                int ris = (c + shift % 26) % 123;
-                if (ris < 97 ) ris += 97;
-                if(Character.isUpperCase(ctmp)){
-                    ctmp = (char)ris;
-                    ctmp = Character.toUpperCase(ctmp);
-                }else{
-                    ctmp = (char)ris;
+                int res = (current + shift % 26) % 123;
+                if (res < 97)
+                    res += 97;
+                if (Character.isUpperCase(c_upperCase)) {
+                    c_upperCase = (char) res;
+                    c_upperCase = Character.toUpperCase(c_upperCase);
+                } else {
+                    c_upperCase = (char) res;
                 }
-                tmp.append(ctmp);
+                enc_s.append(c_upperCase);
             }
         }
-        return tmp.toString();
+        return enc_s.toString();
     }
 
-    public static String decN(String s, int shift){
-        StringBuilder tmp = new StringBuilder();
-        for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(c == ' ') tmp.append(" ");
-            else if(c == '\n') tmp.append("\n");
-            else if(!Character.isLetter(c)) tmp.append(c);
+    public static String decN(String s, int shift) {
+        StringBuilder dec_s = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char current = s.charAt(i);
+            if (current == ' ')
+                dec_s.append(" ");
+            else if (current == '\n')
+                dec_s.append("\n");
+            else if (!Character.isLetter(current))
+                dec_s.append(current);
             else {
-                int ris = 0;
-                char ctmp = ' ';
-                if(Character.isUpperCase(c)){
-                    ctmp = c;
-                    c = Character.toLowerCase(c);
+                int res = 0;
+                char c_upperCase = ' ';
+                if (Character.isUpperCase(current)) {
+                    c_upperCase = current;
+                    current = Character.toLowerCase(current);
                 }
-                if((c - (shift % 26) % 123) < 97){
-                    ris = (c + 26) - (shift % 26);
-                }else{
-                    ris = (c - (shift % 26)) % 123;
-                    if(ris < 97) ris += 97;
+                if ((current - (shift % 26) % 123) < 97) {
+                    res = (current + 26) - (shift % 26);
+                } else {
+                    res = (current - (shift % 26)) % 123;
+                    if (res < 97)
+                        res += 97;
                 }
-                if(Character.isUpperCase(ctmp)){
-                    ctmp = (char)ris;
-                    ctmp = Character.toUpperCase(ctmp);
-                }else{
-                    ctmp = (char)ris;
+                if (Character.isUpperCase(c_upperCase)) {
+                    c_upperCase = (char) res;
+                    c_upperCase = Character.toUpperCase(c_upperCase);
+                } else {
+                    c_upperCase = (char) res;
                 }
-                tmp.append(ctmp);
+                dec_s.append(c_upperCase);
             }
         }
-        return tmp.toString();
+        return dec_s.toString();
     }
 
     public static void main(String[] args) {
 
-        //"abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWYXZ-0123456789";
-        //"abcdefghijklmnopqrstuvwxyz";
+        // "abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWYXZ-0123456789";
+        // "abcdefghijklmnopqrstuvwxyz";
 
-        String s1 = "enivjneifvjnfv";
-        System.out.println(s1);
-        String s2 = encN(s1,40);
-        System.out.println(s2);
-        System.out.println(decN(s2, 40));
+        String s = "ciao a tutti SONO UNA STRINGA lunga 12345";
+        System.out.println(s);
+        String encrpted_s = encN(s, 40);
+        System.out.println(encrpted_s);
+        System.out.println(decN(encrpted_s, 40));
     }
 }

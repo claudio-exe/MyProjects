@@ -1,6 +1,5 @@
 package pacco;
 
-
 import java.util.Random;
 
 public class OneTime_Pad {

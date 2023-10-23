@@ -1,41 +1,45 @@
 package pacco;
 
-
 public class ROT_13 {
 
     public static String enc(String s) {
-        StringBuilder tmp= new StringBuilder();
-        for(int i = 0; i < s.length(); i++) {
+        StringBuilder enc_s = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(c==' ') tmp.append(" ");
+            if (c == ' ')
+                enc_s.append(" ");
             else {
-                int ris = (c + 13) % 123;
-                if (ris < 97) ris += 97;
-                tmp.append((char) ris);
+                int res = (c + 13) % 123;
+                if (res < 97)
+                    res += 97;
+                enc_s.append((char) res);
             }
         }
 
-        return tmp.toString();
+        return enc_s.toString();
     }
+
     public static String dec(String s) {
-        StringBuilder tmp = new StringBuilder();
-        for(int i = 0; i < s.length(); i++) {
+        StringBuilder dec_s = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(c == ' ') tmp.append(" ");
+            if (c == ' ')
+                dec_s.append(" ");
             else {
-                int ris = (c + 13) % 123;
-                if ((ris < 97)) ris += 97;
-                tmp.append((char) ris);
+                int res = (c + 13) % 123;
+                if ((res < 97))
+                    res += 97;
+                dec_s.append((char) res);
             }
         }
-        return tmp.toString();
+        return dec_s.toString();
     }
 
     public static void main(String[] args) {
-        String s1 = "akuna matata ragazzi e benvenuti dal vostro cicciogaymerd ottantanove";
-        System.out.println(s1);
-        String s2 = enc(s1);
-        System.out.println(s2);
-        System.out.println(dec(s2));
+        String s = "akuna matata ragazzi e benvenuti dal vostro cicciogaymerd ottantanove";
+        System.out.println(s);
+        String encrypted_s = enc(s);
+        System.out.println(encrypted_s);
+        System.out.println(dec(encrypted_s));
     }
 }

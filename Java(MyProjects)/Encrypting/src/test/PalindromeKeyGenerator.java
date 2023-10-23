@@ -8,133 +8,132 @@ import java.util.Set;
 
 public class PalindromeKeyGenerator {
 
-    static List<String> coppie = new ArrayList<>();
+    static List<String> KEYS = new ArrayList<>();
 
     public static void main(String[] args) {
-        String h = "imnvwvWVxXYAHMNT8O0o/\\\"()[]{}<>";
-        coppie = casualPalindrome(h, 45);
+        String h = "imnvwvWVxXYAHMNT8O0o/\\\"'^#*+-_°()[]{}<>";
+        KEYS = casualPalindrome(h, 99);
 
-        for (String s : coppie) {
+        for (String s : KEYS) {
             System.out.println(s);
         }
 
-        System.out.println(isPalindrome(coppie.get(2)));
-        System.out.println(coppie.size());
-        System.out.println(coppie.get(coppie.size() - 1).length());
+        System.out.println(isPalindrome(KEYS.get(2)));
+        System.out.println(KEYS.size());
+        System.out.println(KEYS.get(KEYS.size() - 1).length());
+        System.out.println(charCount(KEYS.get(KEYS.size() - 1)));
     }
 
-    public static List<String> casualPalindrome(String str, int coupleLength) {
+    public static List<String> casualPalindrome(String str, int genLength) {
         str = distinctSymbol(str);
-        Set<String> couples = new HashSet<>();
-        List<String> cop = new ArrayList<>();
-        int[] indici = new int[coupleLength];
+        List<String> keys = new ArrayList();
+        int[] indexes = new int[genLength];
         Random rd = new Random();
         do {
-            StringBuilder tmp = new StringBuilder();
-            if (coupleLength % 2 == 0) {
-                for (int i = 0; i < coupleLength / 2; i++) {
+            StringBuilder key = new StringBuilder();
+            if (genLength % 2 == 0) {
+                for (int i = 0; i < genLength / 2; i++) {
                     int ind = rd.nextInt(str.length());
-                    indici[i] = ind;
-                    indici[(coupleLength - 1) - i] = ind;
+                    indexes[i] = ind;
+                    indexes[(genLength - 1) - i] = ind;
                 }
             } else {
-                for (int i = 0; i < coupleLength / 2; i++) {
+                for (int i = 0; i < genLength / 2; i++) {
                     int ind = rd.nextInt(str.length());
-                    indici[i] = ind;
-                    indici[(coupleLength - 1) - i] = ind;
+                    indexes[i] = ind;
+                    indexes[(genLength - 1) - i] = ind;
                 }
-                indici[(coupleLength / 2)] = rd.nextInt(str.length());
+                indexes[(genLength / 2)] = rd.nextInt(str.length());
             }
-            for (int j = 0; j < coupleLength / 2; j++) {
-                tmp.append(str.charAt(indici[j]));
+            for (int j = 0; j < genLength / 2; j++) {
+                key.append(str.charAt(indexes[j]));
             }
-            for (int j = coupleLength / 2; j < coupleLength; j++) {
-                switch (Character.toString(str.charAt(indici[j]))) {
+            for (int j = genLength / 2; j < genLength; j++) {
+                switch (Character.toString(str.charAt(indexes[j]))) {
                     case "/":
-                        tmp.append("\\");
+                        key.append("\\");
                         break;
                     case "\\":
-                        tmp.append("/");
+                        key.append("/");
                         break;
                     case "(":
-                        tmp.append(")");
+                        key.append(")");
                         break;
                     case ")":
-                        tmp.append("(");
+                        key.append("(");
                         break;
                     case "[":
-                        tmp.append("]");
+                        key.append("]");
                         break;
                     case "]":
-                        tmp.append("[");
+                        key.append("[");
                         break;
                     case "{":
-                        tmp.append("}");
+                        key.append("}");
                         break;
                     case "}":
-                        tmp.append("{");
+                        key.append("{");
                         break;
                     case "<":
-                        tmp.append(">");
+                        key.append(">");
                         break;
                     case ">":
-                        tmp.append("<");
+                        key.append("<");
                         break;
                     default:
-                        tmp.append(str.charAt(indici[j]));
+                        key.append(str.charAt(indexes[j]));
                 }
             }
-            if (!couples.contains(tmp.toString())) {
-                couples.add(tmp.toString());
+            if (!keys.contains(key.toString())) {
+                keys.add(key.toString());
             }
-        } while (couples.size() < str.length() * 100);
-        cop.addAll(couples);
-        return cop;
+        } while (keys.size() < str.length() * 100);
+        return keys;
     }
 
     public static boolean isPalindrome(String x) {
-        StringBuilder tmp = new StringBuilder();
+        StringBuilder y = new StringBuilder();
         for (int i = x.length() - 1; i >= 0; i--) {
             if (x.length() % 2 != 0 && i == x.length() / 2) {
-                tmp.append(x.charAt(i));
+                y.append(x.charAt(i));
                 continue;
             }
             switch (Character.toString(x.charAt(i))) {
                 case "/":
-                    tmp.append("\\");
+                    y.append("\\");
                     break;
                 case "\\":
-                    tmp.append("/");
+                    y.append("/");
                     break;
                 case "(":
-                    tmp.append(")");
+                    y.append(")");
                     break;
                 case ")":
-                    tmp.append("(");
+                    y.append("(");
                     break;
                 case "[":
-                    tmp.append("]");
+                    y.append("]");
                     break;
                 case "]":
-                    tmp.append("[");
+                    y.append("[");
                     break;
                 case "{":
-                    tmp.append("}");
+                    y.append("}");
                     break;
                 case "}":
-                    tmp.append("{");
+                    y.append("{");
                     break;
                 case "<":
-                    tmp.append(">");
+                    y.append(">");
                     break;
                 case ">":
-                    tmp.append("<");
+                    y.append("<");
                     break;
                 default:
-                    tmp.append(x.charAt(i));
+                    y.append(x.charAt(i));
             }
         }
-        if (x.equals(tmp.toString())) {
+        if (x.equals(y.toString())) {
             return true;
         } else {
             return false;
@@ -150,4 +149,18 @@ public class PalindromeKeyGenerator {
         } while (s.length() > 0);
         return symbol.toString();
     }
+
+    public static String charCount(String s) {
+        StringBuilder symbol = new StringBuilder();
+        do {
+            symbol.append("['" + Character.toString(s.charAt(0)) + "'");
+            String tmp = s.replace(Character.toString(s.charAt(0)), "");
+            int num = s.length() - tmp.length();
+            symbol.append(":" + String.valueOf(num) + "]\n");
+            s = tmp;
+        } while (s.length() > 0);
+        symbol.delete(symbol.length() - 1, symbol.length());
+        return symbol.toString();
+    }
+
 }

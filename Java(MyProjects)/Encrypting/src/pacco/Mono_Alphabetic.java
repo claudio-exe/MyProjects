@@ -6,8 +6,8 @@ public class Mono_Alphabetic {
     static String k = "";
 
     public static String genKey() {
-        final String alfa = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        String reg = alfa;
+        final String alpha = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String reg = alpha;
         String key = "";
         Random rd = new Random();
 
@@ -22,11 +22,11 @@ public class Mono_Alphabetic {
 
     public static String encrypt(String s) {
         StringBuilder enc = new StringBuilder();
-        final String alfa = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        final String alpha = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String key = k;
 
         for (int i = 0; i < s.length(); i++) {
-            int pos = alfa.indexOf(s.charAt(i));
+            int pos = alpha.indexOf(s.charAt(i));
             char ch = key.charAt(pos);
             enc.append(ch);
         }
@@ -35,17 +35,17 @@ public class Mono_Alphabetic {
     }
 
     public static String decrypt(String s) {
-        StringBuilder enc = new StringBuilder();
-        final String alfa = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder dec = new StringBuilder();
+        final String alpha = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String key = k;
 
         for (int i = 0; i < s.length(); i++) {
             int pos = key.indexOf(s.charAt(i));
-            char ch = alfa.charAt(pos);
-            enc.append(ch);
+            char ch = alpha.charAt(pos);
+            dec.append(ch);
         }
 
-        return enc.toString();
+        return dec.toString();
     }
 
     public static void main(String[] args) {

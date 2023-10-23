@@ -3,64 +3,64 @@ package pacco;
 import java.util.Random;
 
 public class Poly_Aplhabetic {
-    static String k = "";
-    static String[] ka;
-    static String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
+    static String KEY_STRING = "";
+    static String[] KEY_ARRAY;
+    static String ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
 
     public static String genKey() {
 
         String gen = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
-        String c = "";
+        String selected_symbols = "";
         String key = "";
-        String[] cc = new String[63];
-        String kt = "";
+        String[] key_array = new String[63];
+        String total_comb = "";
         Random rd = new Random();
 
         for (int i = 0; i < 8; i++) {
             int r = rd.nextInt(gen.length());
             String tmp = Character.toString(gen.charAt(r));
-            c += tmp;
+            selected_symbols += tmp;
             gen = gen.replace(tmp, "");
         }
 
-        for (int i = 0; i < c.length(); i++) {
-            for (int j = 0; j < c.length(); j++) {
-                kt += Character.toString(c.charAt(i)) + Character.toString(c.charAt(j));
+        for (int i = 0; i < selected_symbols.length(); i++) {
+            for (int j = 0; j < selected_symbols.length(); j++) {
+                total_comb += Character.toString(selected_symbols.charAt(i)) + Character.toString(selected_symbols.charAt(j));
             }
         }
 
-        for (int i = 0; i < cc.length; i++) {
-            int r = rd.nextInt(kt.length());
+        for (int i = 0; i < key_array.length; i++) {
+            int r = rd.nextInt(total_comb.length());
             if (r % 2 == 0) {
-                cc[i] = Character.toString(kt.charAt(r)) + Character.toString(kt.charAt((r + 1)));
-                kt = kt.substring(0, r) + kt.substring((r + 2), kt.length());
+                key_array[i] = Character.toString(total_comb.charAt(r)) + Character.toString(total_comb.charAt((r + 1)));
+                total_comb = total_comb.substring(0, r) + total_comb.substring((r + 2), total_comb.length());
             } else {
-                cc[i] = Character.toString(kt.charAt(r - 1)) + Character.toString(kt.charAt(r));
-                kt = kt.substring(0, r - 1) + kt.substring(r + 1, kt.length());
+                key_array[i] = Character.toString(total_comb.charAt(r - 1)) + Character.toString(total_comb.charAt(r));
+                total_comb = total_comb.substring(0, r - 1) + total_comb.substring(r + 1, total_comb.length());
             }
         }
 
-        for (int i = 0; i < cc.length; i++) {
+        for (int i = 0; i < key_array.length; i++) {
             String tmp = "";
-            int r = rd.nextInt(cc.length);
-            tmp = cc[i];
-            cc[i] = cc[r];
-            cc[r] = tmp;
+            int r = rd.nextInt(key_array.length);
+            tmp = key_array[i];
+            key_array[i] = key_array[r];
+            key_array[r] = tmp;
         }
 
-        ka = cc;
+        KEY_ARRAY = key_array;
 
-        for (int i = 0; i < cc.length; i++) {
-            key += cc[i];
+        for (int i = 0; i < key_array.length; i++) {
+            key += key_array[i];
         }
-        k = key;
+        KEY_STRING = key;
         return key;
     }
 
     public static String encrypt(String s) {
         String enc = "";
         for (int i = 0; i < s.length(); i++) {
-            enc += ka[alfa.indexOf(s.charAt(i))];
+            enc += KEY_ARRAY[ALPHA.indexOf(s.charAt(i))];
         }
         return enc;
     }
@@ -72,9 +72,9 @@ public class Poly_Aplhabetic {
             int j = 0;
             String tmp = "";
             do {
-                tmp = ka[j];
+                tmp = KEY_ARRAY[j];
                 if (tmp.equals(c)) {
-                    dec += alfa.charAt(j);
+                    dec += ALPHA.charAt(j);
                     break;
                 }
                 j = (j + 1);
@@ -96,8 +96,8 @@ public class Poly_Aplhabetic {
     public static void main(String[] args) {
         genKey();
         String a = "ciao a tutti SONO UNA STRINGA lunga 12345";
-        System.out.println("\nChiave: " + k + "\nComposta da: " + distinctSymbol(k).length()
-                + " simboli (simboli usati: " + distinctSymbol(k) + ") " +
+        System.out.println("\nChiave: " + KEY_STRING + "\nComposta da: " + distinctSymbol(KEY_STRING).length()
+                + " simboli (simboli usati: " + distinctSymbol(KEY_STRING) + ") " +
                 "\n\"----------------------------------------------------------------------------------\"");
         System.out.println("Stringa criptata: " + encrypt(a));
         System.out.println("Stringa decriptata: " + decrypt(encrypt(a)));

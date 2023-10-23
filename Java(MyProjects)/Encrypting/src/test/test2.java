@@ -59,8 +59,7 @@ public class test2 {
     }
 
     public static List<String> casualCouples(String str, int coupleLength) {
-        Set<String> couples = new HashSet<>();
-        List<String> cop = new ArrayList<>();
+        List<String> couples = new ArrayList<>();
         int[] indici = new int[coupleLength];
         Random rd = new Random();
         do {
@@ -75,8 +74,7 @@ public class test2 {
                 couples.add(tmp.toString());
             }
         } while (couples.size() < 1000000);
-        cop.addAll(couples);
-        return cop;
+        return couples;
     }
 
     private static void generateCouples(String str, int coupleLength, StringBuilder currentCouple,

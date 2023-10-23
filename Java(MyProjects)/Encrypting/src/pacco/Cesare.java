@@ -1,6 +1,5 @@
 package pacco;
 
-
 public class Cesare {
     public String dec(String s) {
         StringBuilder tmp = new StringBuilder();
