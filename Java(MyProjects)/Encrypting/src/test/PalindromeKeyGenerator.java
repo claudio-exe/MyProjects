@@ -1,54 +1,133 @@
 package test;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class PalindromeKeyGenerator {
 
     static List<String> KEYS = new ArrayList<>();
 
     public static void main(String[] args) {
-        String h = "imnvwvWVxXYAHMNT8O0o/\\\"'^#*+-_°()[]{}<>";
-        KEYS = casualPalindrome(h, 99);
+        String h = "imnvwvWVxXYAHMNT8O0o!|/\\\"'^#*+-_°()[]{}<>";
+        KEYS = palindromeKeyGenerator(h, 3, 27);
 
         for (String s : KEYS) {
-            System.out.println(s);
+            System.out.println(s + "   --> Palindrome? " + isPalindrome(s));
         }
 
-        System.out.println(isPalindrome(KEYS.get(2)));
-        System.out.println(KEYS.size());
-        System.out.println(KEYS.get(KEYS.size() - 1).length());
         System.out.println(charCount(KEYS.get(KEYS.size() - 1)));
+        List<String> wrapped = generateWrappedPalindrome(KEYS);
+        String wrappedP = wrapped.get(wrapped.size()-1);
+        System.out.println(wrappedP);
+        System.out.println(wrappedP + "   --> Palindrome? " + isPalindrome(wrappedP));
+        String triang = generatesEquilateralTriangle(KEYS);
+        String sctriang = generatesScaleneTriangle(KEYS);
+        writeOnFile(triang,"Encrypting/txtFile/Equilateral.txt");
+        writeOnFile(sctriang, "Encrypting/txtFile/Scalene.txt");
     }
 
-    public static List<String> casualPalindrome(String str, int genLength) {
+    public static String generatesEquilateralTriangle(List<String> l) {
+        String wrappedPalindrome = l.get(l.size() - 1);
+        StringBuilder result = new StringBuilder();
+        int m = l.get(0).length()/2;
+        int blanks = l.size() * m;
+        for (int i = 0; i < l.size(); i++) {
+            int div = (wrappedPalindrome.length() % 2 == 0) ? (wrappedPalindrome.length() / 2) : ((wrappedPalindrome.length() / 2) + 1);
+            String sub1 = wrappedPalindrome.substring(0, wrappedPalindrome.length() / 2);
+            String sub2 = wrappedPalindrome.substring(div, wrappedPalindrome.length());
+            wrappedPalindrome = sub1 + l.get(i) + sub2;
+            for (int j = 0; j < blanks; j++) {
+                result.append(" ");
+            }
+            result.append(wrappedPalindrome);
+            for (int j = 0; j < blanks; j++) {
+                result.append(" ");
+            }
+            result.append("\n");
+            blanks -= m;
+        }
+        return result.toString();
+    }
+
+    public static String generatesScaleneTriangle(List<String> l) {
+        String wrappedPalindrome = l.get(l.size() - 1);
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < l.size(); i++) {
+            int div = (wrappedPalindrome.length() % 2 == 0) ? (wrappedPalindrome.length() / 2) : ((wrappedPalindrome.length() / 2) + 1);
+            String sub1 = wrappedPalindrome.substring(0, wrappedPalindrome.length() / 2);
+            String sub2 = wrappedPalindrome.substring(div, wrappedPalindrome.length());
+            wrappedPalindrome = sub1 + l.get(i) + sub2;
+            for (int j = 0; j < sub1.length(); j++) {
+                result.append(' ');
+            }
+            result.append(wrappedPalindrome);
+            for (int j = 0; j < sub2.length(); j++) {
+                result.append(' ');
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
+
+    public static List<String> generateWrappedPalindrome(List<String> l){
+        String wrappedPalindrome = l.get(l.size() - 1);
+        List<String> wrapped = new ArrayList<>();
+        wrapped.add(wrappedPalindrome);
+        for (int i = 0; i < l.size(); i++) {
+            wrappedPalindrome = wrapped.get(i);
+            int div = (wrappedPalindrome.length() % 2 == 0) ? (wrappedPalindrome.length() / 2) : ((wrappedPalindrome.length() / 2) + 1);
+            String sub1 = wrappedPalindrome.substring(0, wrappedPalindrome.length() / 2);
+            String sub2 = wrappedPalindrome.substring(div, wrappedPalindrome.length());
+            wrappedPalindrome = sub1 + l.get(i) + sub2;
+            wrapped.add(wrappedPalindrome);
+        }
+        return wrapped;
+    }
+
+    public static void writeOnFile(String s, String p) {
+        try {
+            File f = new File(p);
+            if (f.exists()) {
+                f.delete();
+            }
+            String path = f.getAbsolutePath();
+            FileWriter fw = new FileWriter((path), true);
+            fw.append(s);
+            fw.close();
+            System.out.println("Written file at: " + path);
+        } catch (IOException e) {
+        }
+    }
+
+    public static List<String> palindromeKeyGenerator(String str, int keyLength, int keysNum) {
         str = distinctSymbol(str);
         List<String> keys = new ArrayList();
-        int[] indexes = new int[genLength];
+        int[] indexes = new int[keyLength];
         Random rd = new Random();
         do {
             StringBuilder key = new StringBuilder();
-            if (genLength % 2 == 0) {
-                for (int i = 0; i < genLength / 2; i++) {
+            if (keyLength % 2 == 0) {
+                for (int i = 0; i < keyLength / 2; i++) {
                     int ind = rd.nextInt(str.length());
                     indexes[i] = ind;
-                    indexes[(genLength - 1) - i] = ind;
+                    indexes[(keyLength - 1) - i] = ind;
                 }
             } else {
-                for (int i = 0; i < genLength / 2; i++) {
+                for (int i = 0; i < keyLength / 2; i++) {
                     int ind = rd.nextInt(str.length());
                     indexes[i] = ind;
-                    indexes[(genLength - 1) - i] = ind;
+                    indexes[(keyLength - 1) - i] = ind;
                 }
-                indexes[(genLength / 2)] = rd.nextInt(str.length());
+                indexes[(keyLength / 2)] = rd.nextInt(str.length());
             }
-            for (int j = 0; j < genLength / 2; j++) {
+            for (int j = 0; j < keyLength / 2; j++) {
                 key.append(str.charAt(indexes[j]));
             }
-            for (int j = genLength / 2; j < genLength; j++) {
+            for (int j = keyLength / 2; j < keyLength; j++) {
                 switch (Character.toString(str.charAt(indexes[j]))) {
                     case "/":
                         key.append("\\");
@@ -84,10 +163,15 @@ public class PalindromeKeyGenerator {
                         key.append(str.charAt(indexes[j]));
                 }
             }
+            if (keyLength % 2 != 0) {
+                String s = "2379§€$£@&%";
+                int r = rd.nextInt(s.length());
+                key.setCharAt(((keyLength / 2)), s.charAt(r));
+            }
             if (!keys.contains(key.toString())) {
                 keys.add(key.toString());
             }
-        } while (keys.size() < str.length() * 100);
+        } while (keys.size() < keysNum);
         return keys;
     }
 

@@ -39,7 +39,7 @@ public class test2 {
             gen += alfa.charAt(r);
             alfa = alfa.replace(Character.toString(alfa.charAt(r)), "");
         }
-        File f = new File("Encrypting/combination.txt");
+        File f = new File("Encrypting/txtFile/combination.txt");
         if (f.exists()) {
             f.delete();
         }
