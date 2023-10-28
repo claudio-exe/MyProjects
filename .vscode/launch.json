@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PalindromeKeyGenerator",
+            "request": "launch",
+            "mainClass": "test.PalindromeKeyGenerator",
+            "projectName": "vscodeJava_c8e651f6"
+        },
+        {
+            "type": "java",
             "name": "Poly_Alphabetic_N",
             "request": "launch",
             "mainClass": "pacco.Poly_Alphabetic_N",

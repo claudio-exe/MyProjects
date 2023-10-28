@@ -13,7 +13,7 @@ public class PalindromeKeyGenerator {
 
     public static void main(String[] args) {
         String h = "imnvwvWVxXYAHMNT8O0o!|/\\\"'^#*+-_°()[]{}<>";
-        KEYS = palindromeKeyGenerator(h, 3, 27);
+        KEYS = palindromeKeyGenerator(h, 3, 10);
 
         for (String s : KEYS) {
             System.out.println(s + "   --> Palindrome? " + isPalindrome(s));
@@ -24,13 +24,13 @@ public class PalindromeKeyGenerator {
         String wrappedP = wrapped.get(wrapped.size()-1);
         System.out.println(wrappedP);
         System.out.println(wrappedP + "   --> Palindrome? " + isPalindrome(wrappedP));
-        String triang = generatesEquilateralTriangle(KEYS);
+        String triang = generatesIsoscelesTriangle(KEYS);
         String sctriang = generatesScaleneTriangle(KEYS);
-        writeOnFile(triang,"Encrypting/txtFile/Equilateral.txt");
+        writeOnFile(triang,"Encrypting/txtFile/Isosceles.txt");
         writeOnFile(sctriang, "Encrypting/txtFile/Scalene.txt");
     }
 
-    public static String generatesEquilateralTriangle(List<String> l) {
+    public static String generatesIsoscelesTriangle(List<String> l) {
         String wrappedPalindrome = l.get(l.size() - 1);
         StringBuilder result = new StringBuilder();
         int m = l.get(0).length()/2;
@@ -105,7 +105,7 @@ public class PalindromeKeyGenerator {
 
     public static List<String> palindromeKeyGenerator(String str, int keyLength, int keysNum) {
         str = distinctSymbol(str);
-        List<String> keys = new ArrayList();
+        List<String> keys = new ArrayList<>();
         int[] indexes = new int[keyLength];
         Random rd = new Random();
         do {
