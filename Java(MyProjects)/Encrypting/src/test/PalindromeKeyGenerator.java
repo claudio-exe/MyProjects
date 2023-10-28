@@ -13,7 +13,7 @@ public class PalindromeKeyGenerator {
 
     public static void main(String[] args) {
         String h = "imnvwvWVxXYAHMNT8O0o!|/\\\"'^#*+-_°()[]{}<>";
-        KEYS = palindromeKeyGenerator(h, 3, 10);
+        KEYS = palindromeKeyGenerator(h, 3, 17);
 
         for (String s : KEYS) {
             System.out.println(s + "   --> Palindrome? " + isPalindrome(s));
@@ -95,7 +95,7 @@ public class PalindromeKeyGenerator {
                 f.delete();
             }
             String path = f.getAbsolutePath();
-            FileWriter fw = new FileWriter((path), true);
+            FileWriter fw = new FileWriter(path, true);
             fw.append(s);
             fw.close();
             System.out.println("Written file at: " + path);
